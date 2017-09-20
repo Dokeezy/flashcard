@@ -2,6 +2,7 @@
   <br>
   Flashcard ⚡
   <br>
+  <br>
 </h1>
 
 <h4 align="center">The best quizz app.</h4>
