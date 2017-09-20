@@ -1,0 +1,20 @@
+{
+  "expo": {
+    "sdkVersion": "20.0.0",
+    "orientation": "portrait",
+    "name": "Flashcards",
+    "description": "The best quizz app.",
+    "slug": "flashcards",
+    "version": "1.0",
+    "icon": "https://www.emojibase.com/resources/img/emojis/apple/x26a1.png.pagespeed.ic.m3t89jIGO2.png",
+    "notification": {
+      "icon": "https://www.emojibase.com/resources/img/emojis/apple/x26a1.png.pagespeed.ic.m3t89jIGO2.png"
+    },
+    "ios": {
+      "bundleIdentifier": "org.flashcards.exp"
+    },
+    "android": {
+      "package": "org.flashcards.exp"
+    }
+  }
+}
