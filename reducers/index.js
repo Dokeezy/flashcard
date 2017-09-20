@@ -12,7 +12,10 @@ function decks (state = {}, action) {
     case ADD_DECK :
       return {
         ...state,
-        ...action.deck
+        [action.deckName]: {
+          'title': action.deckName,
+          questions: []
+        }
       }
 
     case ADD_QUIZZ :
@@ -21,7 +24,7 @@ function decks (state = {}, action) {
         [action.deckName]: {
           ...state[action.deckName],
           questions: [
-            ...state[action.deckName.questions],
+            ...state[action.deckName].questions,
             action.quizz
           ]
         }

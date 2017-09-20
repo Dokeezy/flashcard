@@ -2,7 +2,7 @@ import React from 'react'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import reducer from './reducers'
-import { View, Platform, StatusBar } from 'react-native'
+import { View, Platform, StatusBar, AsyncStorage } from 'react-native'
 import { TabNavigator, StackNavigator } from 'react-navigation'
 
 import { FontAwesome, Ionicons } from '@expo/vector-icons'
@@ -13,6 +13,7 @@ import DeckList from './components/DeckList'
 import NewDeck from './components/NewDeck'
 import NewQuizz from './components/NewQuizz'
 import Quizz from './components/Quizz'
+import { clearLocalNotification, setLocalNotification } from './utils/helpers'
 
 function UdaciStatusBar ({backgroundColor, ...props}) {
   return (
@@ -91,6 +92,10 @@ const MainNavigator = StackNavigator({
 })
 
 export default class App extends React.Component {
+  componentDidMount() {
+    clearLocalNotification()
+      .then(setLocalNotification)
+  }
   render() {
     return (
       <Provider store={createStore(reducer)}>
