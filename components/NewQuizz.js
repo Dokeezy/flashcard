@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { addQuizz } from '../actions'
 import { NavigationActions } from 'react-navigation'
 import TextButton from './TextButton'
-import { CheckBox } from 'react-native-elements'
+import { Card, ListItem, Button, CheckBox, FormLabel, FormInput } from 'react-native-elements'
 
 class NewQuizz extends Component {
   state = {
@@ -30,7 +30,7 @@ class NewQuizz extends Component {
 
       submitQuestion(this.props.deck.title, quizz)
 
-      this.setState(() => ({ question: '', answer: '' }))
+      this.setState(() => ({ question: '', answer: '', answerType: false }))
 
       //const backAction = NavigationActions.back()
       //this.props.navigation.dispatch(backAction)
@@ -40,43 +40,44 @@ class NewQuizz extends Component {
   render() {
     return (
       <View>
-        <Text>NewQuizz</Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={(text) => {
-            this.setState({ question: text })
-            this.setState({ error: '' })
-          }}
-          value={this.state.question}
-        />
-        <TextInput
-          style={styles.input}
-          onChangeText={(text) => {
-            this.setState({ answer: text })
-            this.setState({ error: '' })
-          }}
-          value={this.state.answer}
-        />
-        <CheckBox
-          title='Is the answer true ?'
-          checked={this.state.answerType}
-          onPress={() => this.setState({ answerType: !this.state.answerType })}
-        />
-        <Text>{this.state.error}</Text>
-        <TextButton onPress={this.submit}>SUBMIT</TextButton>
+        <Card title="New Quizz">
+
+          <FormLabel>Question :</FormLabel>
+          <FormInput
+            value={this.state.question}
+            onChangeText={(text) => {
+              this.setState({ question: text })
+              this.setState({ error: '' })
+            }}/>
+
+          <CheckBox
+            title='Is the answer true ?'
+            style={{marginTop: 20}}
+            checked={this.state.answerType}
+            onPress={() => this.setState({ answerType: !this.state.answerType })}
+          />
+
+          <FormLabel>Answer detail :</FormLabel>
+          <FormInput
+            value={this.state.answer}
+            onChangeText={(text) => {
+              this.setState({ answer: text })
+              this.setState({ error: '' })
+            }}/>
+
+          <Text style={{marginBottom: 20}}>{this.state.error}</Text>
+          <Button
+            icon={{name: 'add'}}
+            backgroundColor='#ffe274'
+            disabled={this.state.question.length === 0}
+            onPress={this.submit}
+            buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 20}}
+            title='CREATE' />
+        </Card>
       </View>
     )
   }
 }
-
-const styles = StyleSheet.create({
-  input: {
-    height: 40,
-    width: '70%',
-    borderColor: 'gray',
-    borderWidth: 1
-  }
-})
 
 function mapStateToProps (decks, { navigation }) {
   const { deckName } = navigation.state.params

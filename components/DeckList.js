@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { receiveDecks } from '../actions'
 import { AppLoading} from 'expo'
 import { fetchDecks } from '../utils/api'
+import { List, ListItem } from 'react-native-elements'
 
 class DeckList extends Component {
   state = {
@@ -27,35 +28,24 @@ class DeckList extends Component {
 
     return (
       <View>
-        <Text>DeckList</Text>
-        {this.props.decks.map(deck => {
-          return (
-            <Text
-              key={deck.title}
-              style={styles.deck}
-              onPress={() => this.props.navigation.navigate(
-                  'Deck',
-                  { deckName: deck.title }
-              )}
-            >
-              {deck.title} - {deck.questions.length} cards
-            </Text>
-          )
-        })}
+        <List containerStyle={{marginBottom: 20}}>
+          {this.props.decks.map(deck => (
+              <ListItem
+                roundAvatar
+                key={deck.title}
+                title={deck.title}
+                onPress={() => this.props.navigation.navigate(
+                    'Deck',
+                    { deckName: deck.title }
+                )}
+                subtitle={deck.questions.length + " cards"}
+              />
+            ))}
+        </List>
       </View>
     )
   }
 }
-
-const styles = StyleSheet.create({
-  deck: {
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  }
-})
 
 function mapStateToProps (decks) {
   return {

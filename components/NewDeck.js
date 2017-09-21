@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { addDeck } from '../actions'
 import { NavigationActions } from 'react-navigation'
 import TextButton from './TextButton'
+import { FormLabel, FormInput, Card, Button } from 'react-native-elements'
 
 class NewDeck extends Component {
   state = {
@@ -29,17 +30,23 @@ class NewDeck extends Component {
   render() {
     return (
       <View>
-        <Text>What's the title of your new deck ?</Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={(text) => {
+        <Card title="What's the title of your new deck ?">
+          <FormLabel>Deck name :</FormLabel>
+          <FormInput
+            value={this.state.deckName}
+            onChangeText={(text) => {
             this.setState({ deckName: text })
             this.setState({ error: '' })
-          }}
-          value={this.state.deckName}
-        />
-        <Text>{this.state.error}</Text>
-        <TextButton onPress={this.submit}>SUBMIT</TextButton>
+          }}/>
+          <Text style={{marginBottom: 20}}>{this.state.error}</Text>
+          <Button
+            icon={{name: 'add'}}
+            backgroundColor='#ffe274'
+            disabled={this.state.deckName.length === 0}
+            onPress={this.submit}
+            buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 20}}
+            title='CREATE' />
+        </Card>
       </View>
     )
   }

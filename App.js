@@ -42,10 +42,10 @@ const Tabs = TabNavigator({
     header: null
   },
   tabBarOptions: {
-    activeTintColor: Platform.OS === 'ios' ? 'purple' : 'white',
+    activeTintColor: Platform.OS === 'ios' ? '#ffe274' : 'white',
     style: {
       height: 56,
-      backgroundColor: Platform.OS === 'ios' ? 'white' : 'purple',
+      backgroundColor: Platform.OS === 'ios' ? 'white' : '#ffe274',
       shadowColor: 'rgba(0, 0, 0, 0.24)',
       shadowOffset: {
         width: 0,
@@ -63,19 +63,20 @@ const MainNavigator = StackNavigator({
   },
   Deck: {
     screen: Deck,
-    navigationOptions: {
+    navigationOptions: ({navigation}) => ({
+      title: navigation.state.params.deckName,
       headerTintColor: 'white',
       headerStyle: {
-        backgroundColor: 'purple',
+        backgroundColor: '#444444',
       }
-    }
+    }),
   },
   NewQuizz: {
     screen: NewQuizz,
     navigationOptions: {
       headerTintColor: 'white',
       headerStyle: {
-        backgroundColor: 'purple',
+        backgroundColor: '#444444',
       }
     }
   },
@@ -84,7 +85,7 @@ const MainNavigator = StackNavigator({
     navigationOptions: {
       headerTintColor: 'white',
       headerStyle: {
-        backgroundColor: 'purple',
+        backgroundColor: '#444444',
       }
     }
   }
@@ -98,7 +99,7 @@ export default class App extends React.Component {
     return (
       <Provider store={createStore(reducer)}>
         <View style={{flex: 1}}>
-          <UdaciStatusBar backgroundColor={'purple'} barStyle="light-content" />
+          <UdaciStatusBar backgroundColor={'#444444'} barStyle="light-content" />
           <MainNavigator />
         </View>
       </Provider>
