@@ -5,6 +5,11 @@ import TextButton from './TextButton'
 import { addQuizz } from '../actions'
 
 class Deck extends Component {
+
+  startQuizz = () => {
+    this.props.navigation.navigate('Quizz', { deckName: this.props.deck.title })
+  }
+
   render() {
     return (
       <View>
@@ -14,7 +19,11 @@ class Deck extends Component {
             'NewQuizz',
             { deckName: this.props.deck.title }
         )}>Add Card</TextButton>
-        <TextButton style={{backgroundColor: this.props.deck.questions.length === 0 ? 'lightgrey' : '#444444'}} disabled={this.props.deck.questions.length === 0}>Start Quizz</TextButton>
+        <TextButton
+          style={{backgroundColor: this.props.deck.questions.length === 0 ? 'lightgrey' : '#444444'}}
+          disabled={this.props.deck.questions.length === 0}
+          onPress={this.startQuizz}>Start Quizz
+        </TextButton>
       </View>
     )
   }
