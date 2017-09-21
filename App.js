@@ -13,7 +13,6 @@ import DeckList from './components/DeckList'
 import NewDeck from './components/NewDeck'
 import NewQuizz from './components/NewQuizz'
 import Quizz from './components/Quizz'
-import { clearLocalNotification, setLocalNotification } from './utils/helpers'
 
 function UdaciStatusBar ({backgroundColor, ...props}) {
   return (
@@ -93,8 +92,6 @@ const MainNavigator = StackNavigator({
 
 export default class App extends React.Component {
   componentDidMount() {
-    clearLocalNotification()
-      .then(setLocalNotification)
     //AsyncStorage.clear()
   }
   render() {

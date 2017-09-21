@@ -32,7 +32,8 @@ class NewQuizz extends Component {
 
       this.setState(() => ({ question: '', answer: '' }))
 
-      this.props.navigation.dispatch(NavigationActions.back({ key: 'Deck' }))
+      //const backAction = NavigationActions.back()
+      //this.props.navigation.dispatch(backAction)
     }
   }
 
