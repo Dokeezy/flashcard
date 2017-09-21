@@ -5,12 +5,14 @@ import { connect } from 'react-redux'
 import { addQuizz } from '../actions'
 import { NavigationActions } from 'react-navigation'
 import TextButton from './TextButton'
+import { CheckBox } from 'react-native-elements'
 
 class NewQuizz extends Component {
   state = {
     question: '',
     answer: '',
-    error: ''
+    error: '',
+    answerType: false
   }
 
   submit = () => {
@@ -20,7 +22,8 @@ class NewQuizz extends Component {
 
       let quizz = {
         question:  this.state.question,
-        answer: this.state.answer
+        answer: this.state.answer,
+        answerType: this.state.answerType
       }
 
       this.props.dispatch(addQuizz(this.props.deck.title, quizz))
@@ -52,6 +55,11 @@ class NewQuizz extends Component {
             this.setState({ error: '' })
           }}
           value={this.state.answer}
+        />
+        <CheckBox
+          title='Is the answer true ?'
+          checked={this.state.answerType}
+          onPress={() => this.setState({ answerType: !this.state.answerType })}
         />
         <Text>{this.state.error}</Text>
         <TextButton onPress={this.submit}>SUBMIT</TextButton>

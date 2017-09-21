@@ -95,6 +95,7 @@ export default class App extends React.Component {
   componentDidMount() {
     clearLocalNotification()
       .then(setLocalNotification)
+    //AsyncStorage.clear()
   }
   render() {
     return (

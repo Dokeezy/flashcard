@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
+import TextButton from './TextButton'
 
 class Quizz extends Component {
 
@@ -19,12 +20,20 @@ class Quizz extends Component {
     )
   }
 
+  nextQuestion = () => {
+    this.setState((state) => {
+      return { quizzIndex: state.quizzIndex + 1 }
+    })
+  }
+
   render() {
     console.log(this.props.questions)
     return (
       <View>
         <Text>Quizz</Text>
+        <Text>{this.state.quizzIndex}</Text>
         {this.renderCurrentQuizz()}
+        <TextButton onPress={this.nextQuestion}>Next</TextButton>
       </View>
     )
   }
