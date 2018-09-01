@@ -11,6 +11,8 @@
 
 ## Key Features
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/pierreericgarcia/flashcard.svg)](https://greenkeeper.io/)
+
 * Create and save quizz
 * Challenge yourself everyday
 * Get better at what you love ❤️
